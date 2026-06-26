@@ -32,8 +32,11 @@ export const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: ROUTES.search.slice(1), element: <SearchPage /> },
       { path: 'movies/:movieId', element: <MovieDetailPage /> },
-      { path: 'tv/:tvId', element: <TVShowDetailPage /> },
-      { path: 'tv/:tvId/season/:seasonNumber', element: <SeasonDetailPage /> },
+      {
+        path: 'tv/:tvId',
+        element: <TVShowDetailPage />,
+        children: [{ path: 'season/:seasonNumber', element: <SeasonDetailPage /> }],
+      },
       { path: 'watchlist', element: <WatchlistPage /> },
       { path: 'lists', element: <ListsPage /> },
       { path: 'lists/:listId', element: <ListDetailPage /> },

@@ -1,6 +1,11 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const rootDir = path.dirname(fileURLToPath(import.meta.url))
 import { loadEnv } from 'vite'
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
+
 
 const getViteBase = (basePath: string) => {
   if (!basePath || basePath === '/') return '/'
@@ -16,7 +21,7 @@ export default defineConfig(({ mode }) => {
     base,
     test: {
       environment: 'jsdom',
-      setupFiles: './src/test/setup.ts',
+      setupFiles: [path.join(rootDir, 'src/test/setup.ts')],
     },
   }
 })

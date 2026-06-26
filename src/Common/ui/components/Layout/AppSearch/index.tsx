@@ -9,7 +9,7 @@ export const AppSearch = () => {
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && value.trim()) {
-      navigate(ROUTES.search)
+      navigate(`${ROUTES.search}?q=${encodeURIComponent(value.trim())}`)
       setValue('')
     }
   }
