@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { getRouterBasename } from './Common/core/utils/Env.utils'
 import { ROUTES } from './Common/core/constants/Routes.constants'
 import { ProtectedRoute } from './Common/ui/routes/ProtectedRoute'
 import { PublicRoute } from './Common/ui/routes/PublicRoute'
@@ -43,4 +44,6 @@ export const router = createBrowserRouter([
     path: '*',
     element: <NotFoundPage />,
   },
-])
+], {
+  basename: getRouterBasename(),
+})

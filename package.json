@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "deploy": "vite build && gh-pages -d dist"
+    "deploy": "VITE_BASE_PATH=/CineView/ vite build && gh-pages -d dist"
   },
   "dependencies": {
     "i18next": "^25.3.2",

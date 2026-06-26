@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var path = window.location.pathname.replace('/CineView', '');
+      window.location.replace(
+        '/CineView/' +
+        '?p=' + encodeURIComponent(path + window.location.search) +
+        window.location.hash
+      );
+    </script>
+  </head>
+</html>
