@@ -1,28 +1,74 @@
-import { useNavigate, useLocation } from 'react-router-dom'
-import { PagePlaceholder } from '../../../Common/ui/components/PagePlaceholder'
+import { observer } from 'mobx-react-lite'
+import { useLocation ,useNavigate } from 'react-router-dom'
+
 import { LoginForm } from '../components/LoginForm'
 import { useLoginController } from '../controllers/useLoginController'
-import { Wrapper } from './StyledComponents'
 
-export const LoginPage = () => {
+
+
+
+
+import {
+  Brand,
+  CardContainer,
+  Description,
+  PageContainer,
+  Title,
+} from './StyledComponents'
+
+const LoginPageComponent = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const { error, login } = useLoginController()
+  const state = location.state as { from?: { pathname: string } } | null
+  const from = state?.from?.pathname ?? '/'
+  const {
+    username,
+    password,
 
-  const from = (location.state as { from?: string } | null)?.from ?? '/'
+    usernameError,
+    passwordError,
+    authError,
 
-  const handleLogin = (username: string, password: string) => {
-    const success = login(username, password)
+    setUsername,
+    setPassword,
+
+    submitLogin,
+  } = useLoginController()
+
+  const handleSubmit = () => {
+    const success = submitLogin()
+
     if (success) {
       navigate(from, { replace: true })
     }
-    return success
   }
 
   return (
-    <Wrapper>
-      <PagePlaceholder title="Login Page" description="Milestone 1 auth scaffold is ready." />
-      <LoginForm onSubmit={handleLogin} error={error} />
-    </Wrapper>
+    <PageContainer>
+      <CardContainer>
+        <Brand>CineView</Brand>
+
+        <Title>Welcome Back</Title>
+
+        <Description>
+        Track movies, discover TV shows,
+        build watchlists and explore
+        everything you love about movies and TV shows.
+        </Description>
+
+        <LoginForm
+          username={username}
+          password={password}
+          usernameError={usernameError}
+          passwordError={passwordError}
+          authError={authError}
+          onUsernameChange={setUsername}
+          onPasswordChange={setPassword}
+          onSubmit={handleSubmit}
+        />
+      </CardContainer>
+    </PageContainer>
   )
 }
+
+export const LoginPage = observer(LoginPageComponent)

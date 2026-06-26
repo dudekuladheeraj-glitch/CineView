@@ -20,15 +20,22 @@ export class PreferencesStore {
     }
   }
 
+  persist() {
+    localStorage.setItem(STORAGE_KEYS.preferences, JSON.stringify(this.preferences))
+  }
+
   setLanguage(language: AppLanguage) {
     this.preferences.language = language
+    this.persist()
   }
 
   setRegion(region: string) {
     this.preferences.region = region
+    this.persist()
   }
 
   setTheme(theme: AppTheme) {
     this.preferences.theme = theme
+    this.persist()
   }
 }
