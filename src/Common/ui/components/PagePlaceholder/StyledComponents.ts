@@ -14,9 +14,11 @@ export const Wrapper = styled.section`
 export const Title = styled.h1`
   font-size: 2rem;
   margin: 0;
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const Description = styled.p`
   margin: 0;
-  color: #666;
+  color: ${({ theme }) => theme.colors.textMuted};
+  line-height: 1.6;
 `

@@ -1,1 +1,26 @@
-{"search":"Search"}
+{
+    "placeholder": "Search movies, TV shows, and people...",
+    "ariaLabel": "Search",
+    "recentSearches": "Recent searches",
+    "idleHint": "Start typing to search the TMDB catalogue",
+    "searching": "Searching...",
+    "noResults": "No results found for your search",
+    "searchFailed": "Search failed",
+    "sections": {
+      "movies": "Movies",
+      "tvShows": "TV Shows",
+      "people": "People"
+    },
+    "errors": {
+      "movies": "Unable to load movie results",
+      "tvShows": "Unable to load TV show results",
+      "people": "Unable to load people results"
+    },
+    "results": {
+      "empty": "No results found",
+      "untitled": "Untitled",
+      "tvShow": "TV show",
+      "person": "Person",
+      "openTvShow": "Open {{title}}"
+    }
+  }

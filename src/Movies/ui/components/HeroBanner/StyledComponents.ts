@@ -6,7 +6,7 @@ export const BannerRoot = styled.section`
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 32px;
-  background: #111827;
+  background: ${({ theme }) => theme.colors.mediaBackdrop};
 `
 
 export const BackdropImage = styled.img`
@@ -20,7 +20,11 @@ export const BackdropImage = styled.img`
 export const BackdropFallback = styled.div`
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #1f2937, #111827);
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.primaryHover},
+    ${({ theme }) => theme.colors.mediaBackdrop}
+  );
 `
 
 export const Overlay = styled.div`
@@ -28,9 +32,9 @@ export const Overlay = styled.div`
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(17, 24, 39, 0.95) 0%,
-    rgba(17, 24, 39, 0.75) 45%,
-    rgba(17, 24, 39, 0.2) 100%
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.6) 45%,
+    rgba(0, 0, 0, 0.15) 100%
   );
 `
 
@@ -49,12 +53,12 @@ export const Content = styled.div`
 export const Title = styled.h1`
   margin: 0;
   font-size: clamp(2rem, 4vw, 3rem);
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.onMedia};
 `
 
 export const Overview = styled.p`
   margin: 0;
-  color: #e5e7eb;
+  color: ${({ theme }) => theme.colors.onMediaMuted};
   line-height: 1.6;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -75,7 +79,7 @@ export const RatingBadge = styled.span`
   padding: 6px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
-  color: #fbbf24;
+  color: ${({ theme }) => theme.colors.rating};
   font-weight: 600;
 `
 

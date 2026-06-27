@@ -1,1 +1,28 @@
-{"shows":"టీవీ షోలు"}
+{
+    "detail": {
+      "loading": "టీవీ షో లోడ్ అవుతోంది...",
+      "loadFailed": "టీవీ షో లోడ్ చేయడం విఫలమైంది",
+      "noOverview": "వివరణ అందుబాటులో లేదు."
+    },
+    "errors": {
+      "details": "టీవీ షో వివరాలు లోడ్ చేయడం సాధ్యపడలేదు",
+      "seasons": "సీజన్లు లోడ్ చేయడం సాధ్యపడలేదు",
+      "episodes": "ఎపిసోడ్‌లు లోడ్ చేయడం సాధ్యపడలేదు"
+    },
+    "seasons": {
+      "ariaLabel": "సీజన్లు",
+      "title": "సీజన్లు"
+    },
+    "seasonCount_one": "{{count}} సీజన్",
+    "seasonCount_other": "{{count}} సీజన్లు",
+    "addToWatchlist": "+ వాచ్‌లిస్ట్",
+    "episodes": {
+      "fallbackTitle": "ఎపిసోడ్‌లు",
+      "sectionAria": "{{seasonTitle}} ఎపిసోడ్‌లు",
+      "empty": "ఎపిసోడ్‌లు లేవు",
+      "markWatched": "ఎపిసోడ్ {{number}} చూసినట్లు గుర్తించండి",
+      "trackingComingSoon": "ఎపిసోడ్ ట్రాకింగ్ త్వరలో",
+      "airedOn": "ప్రసారం: {{date}}",
+      "noOverview": "వివరణ అందుబాటులో లేదు."
+    }
+  }

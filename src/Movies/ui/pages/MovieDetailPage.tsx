@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
 
 import { AsyncState, ErrorBoundary, NotFoundPage, PageContainer } from '../../../Common'
 import { CastCarousel } from '../components/CastCarousel'
@@ -8,9 +9,9 @@ import { TrailerModal } from '../components/TrailerModal'
 import { useMovieDetailController } from '../controllers/useMovieDetailController'
 
 const MovieDetailPageComponent = () => {
+  const { t } = useTranslation('movies')
   const {
     movie,
-    //movieStatus,
     movieError,
     credits,
     creditsStatus,
@@ -33,15 +34,13 @@ const MovieDetailPageComponent = () => {
   } = useMovieDetailController()
 
   if (pageStatus === 'notFound') {
-    return (
-      <NotFoundPage />
-    )
+    return <NotFoundPage />
   }
 
-  if (pageStatus === 'loading' || pageStatus === 'idle') {
+  if (pageStatus === 'loading') {
     return (
       <PageContainer>
-        <AsyncState status="loading" loadingText="Loading movie details..." />
+        <AsyncState status="loading" loadingText={t('detail.loading')} />
       </PageContainer>
     )
   }
@@ -49,14 +48,17 @@ const MovieDetailPageComponent = () => {
   if (pageStatus === 'error' || !movie) {
     return (
       <PageContainer>
-        <AsyncState status="error" error={pageError ?? movieError ?? 'Failed to load movie'} />
+        <AsyncState
+          status="error"
+          error={pageError ?? movieError ?? t('detail.loadFailed')}
+        />
       </PageContainer>
     )
   }
 
   return (
     <PageContainer>
-      <ErrorBoundary fallbackTitle="Unable to load movie header">
+      <ErrorBoundary fallbackTitle={t('errors.header')}>
         <MovieDetailHeader
           movie={movie}
           trailerKey={trailerKey}
@@ -64,7 +66,7 @@ const MovieDetailPageComponent = () => {
         />
       </ErrorBoundary>
 
-      <ErrorBoundary fallbackTitle="Unable to load cast" onRetry={retryCredits}>
+      <ErrorBoundary fallbackTitle={t('errors.cast')} onRetry={retryCredits}>
         <CastCarousel
           cast={credits}
           status={creditsStatus}
@@ -73,9 +75,9 @@ const MovieDetailPageComponent = () => {
         />
       </ErrorBoundary>
 
-      <ErrorBoundary fallbackTitle="Unable to load similar movies" onRetry={retrySimilar}>
+      <ErrorBoundary fallbackTitle={t('errors.similar')} onRetry={retrySimilar}>
         <ContentRow
-          title="Similar Movies"
+          title={t('detail.similarMovies')}
           items={similar}
           status={similarStatus}
           error={similarError}
@@ -83,12 +85,9 @@ const MovieDetailPageComponent = () => {
         />
       </ErrorBoundary>
 
-      <ErrorBoundary
-        fallbackTitle="Unable to load recommendations"
-        onRetry={retryRecommendations}
-      >
+      <ErrorBoundary fallbackTitle={t('errors.recommendations')} onRetry={retryRecommendations}>
         <ContentRow
-          title="Recommended"
+          title={t('detail.recommended')}
           items={recommendations}
           status={recommendationsStatus}
           error={recommendationsError}

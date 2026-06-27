@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from 'mobx'
-
+import { resolveStoreError } from '../../../../Common'
 import { TmdbApiError } from '../../../../Common/core/errors/Tmdb.errors'
 import type { SeasonDetailSectionState } from '../../../core/types/TVShow.types'
 import type { TVShowsService } from '../../services/TVShowsService'
@@ -21,7 +21,7 @@ export class SeasonDetailStore {
   private getErrorMessage(error: unknown) {
     if (error instanceof TmdbApiError) return error.message
     if (error instanceof Error) return error.message
-    return 'Failed to load season'
+    return resolveStoreError(error, 'common:storeErrors.loadSeason')
   }
 
   clear() {

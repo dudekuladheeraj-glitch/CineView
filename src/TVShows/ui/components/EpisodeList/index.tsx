@@ -1,6 +1,10 @@
-import { AsyncState, MediaPoster } from '../../../../Common'
+import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
+
+import { AsyncState, formatLocaleDate, MediaPoster } from '../../../../Common'
 import type { AsyncStatus } from '../../../../Common/core/types/Common.types'
 import type { Episode } from '../../../../Common/core/types/Tmdb.types'
+import { usePreferencesStore } from '../../../../Preferences/data/stores/providers'
 import {
   Checkbox,
   EpisodeCard,
@@ -18,40 +22,58 @@ interface Props {
   error?: string | null
 }
 
-export const EpisodeList = ({ seasonTitle, episodes, status, error }: Props) => {
+const EpisodeListComponent = ({ seasonTitle, episodes, status, error }: Props) => {
+  const { t } = useTranslation(['tvShows', 'common'])
+  const preferencesStore = usePreferencesStore()
+  const language = preferencesStore.preferences.language
+
+
+
   return (
-    <Section aria-label={`${seasonTitle} episodes`}>
+    <Section aria-label={t('tvShows:episodes.sectionAria', { seasonTitle })}>
       <Title>{seasonTitle}</Title>
       <AsyncState
         status={status}
         error={error}
         isEmpty={status === 'success' && episodes.length === 0}
-        emptyText="No episodes available"
+        emptyText={t('tvShows:episodes.empty')}
       >
-        {episodes.map((episode) => (
-          <EpisodeCard key={episode.id}>
-            <Checkbox
-              type="checkbox"
-              disabled
-              aria-label={`Mark episode ${episode.episode_number} as watched`}
-              title="Episode tracking coming soon"
-            />
-            <MediaPoster
-              path={episode.still_path ?? null}
-              alt={episode.name}
-              width="120px"
-              aspectRatio="16 / 9"
-            />
-            <div>
-              <EpisodeTitle>
-                {episode.episode_number}. {episode.name}
-              </EpisodeTitle>
-              {episode.air_date ? <EpisodeMeta>Aired: {episode.air_date}</EpisodeMeta> : null}
-              {episode.overview ? <EpisodeOverview>{episode.overview}</EpisodeOverview> : null}
-            </div>
-          </EpisodeCard>
-        ))}
+       {episodes.map((episode) => {
+  const overviewText = episode.overview?.trim() || t('tvShows:episodes.noOverview')
+
+  return (
+    <EpisodeCard key={episode.id}>
+      <Checkbox
+        type="checkbox"
+        disabled
+        aria-label={t('tvShows:episodes.markWatched', { number: episode.episode_number })}
+        title={t('tvShows:episodes.trackingComingSoon')}
+      />
+      <MediaPoster
+        path={episode.still_path ?? null}
+        alt={episode.name}
+        width="120px"
+        aspectRatio="16 / 9"
+      />
+      <div>
+        <EpisodeTitle>
+          {episode.episode_number}. {episode.name}
+        </EpisodeTitle>
+        {episode.air_date ? (
+          <EpisodeMeta>
+            {t('tvShows:episodes.airedOn', {
+              date: formatLocaleDate(episode.air_date, language),
+            })}
+          </EpisodeMeta>
+        ) : null}
+        <EpisodeOverview>{overviewText}</EpisodeOverview>
+      </div>
+    </EpisodeCard>
+  )
+})}
       </AsyncState>
     </Section>
   )
 }
+
+export const EpisodeList = observer(EpisodeListComponent)

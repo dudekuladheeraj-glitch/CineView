@@ -17,7 +17,7 @@ export const RowHeader = styled.div`
 export const RowTitle = styled.h2`
   margin: 0;
   font-size: 1.35rem;
-  color: #111827;
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const ScrollTrack = styled.div`
@@ -32,7 +32,7 @@ export const ScrollTrack = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #d1d5db;
+    background: ${({ theme }) => theme.colors.border};
     border-radius: 999px;
   }
 `

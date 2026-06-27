@@ -10,8 +10,8 @@ export const Avatar = styled.div`
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #111827;
-  color: #ffffff;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primaryText};
   font-size: 0.9rem;
   font-weight: 700;
   display: flex;
@@ -25,7 +25,7 @@ export const Avatar = styled.div`
 export const Username = styled.span`
   font-size: 0.9rem;
   font-weight: 500;
-  color: #374151;
+  color: ${({ theme }) => theme.colors.text};
 
   @media (max-width: 640px) {
     display: none;
@@ -38,21 +38,17 @@ export const LogoutButton = styled.button`
   gap: 6px;
   padding: 7px 14px;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${({ theme }) => theme.colors.border};
   background: transparent;
-  color: #374151;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 
   &:hover {
-    background: #f3f4f6;
-    border-color: #d1d5db;
-    color: #111827;
-  }
-
-  &:active {
-    background: #e5e7eb;
+    background: ${({ theme }) => theme.colors.surfaceMuted};
+    border-color: ${({ theme }) => theme.colors.border};
+    color: ${({ theme }) => theme.colors.text};
   }
 `

@@ -14,16 +14,16 @@ export const useMovieDetailController = () => {
   const parsedMovieId = Number(movieId)
 
   useEffect(() => {
-    if (!parsedMovieId || Number.isNaN(parsedMovieId)) {
-      return
-    }
+    if (!parsedMovieId || Number.isNaN(parsedMovieId)) return
 
     void movieDetailStore.fetchMovieDetail(parsedMovieId, language)
+  }, [movieDetailStore, parsedMovieId, language])
 
+  useEffect(() => {
     return () => {
       movieDetailStore.clear()
     }
-  }, [movieDetailStore, parsedMovieId, language])
+  }, [movieDetailStore])
 
   return {
     movie: movieDetailStore.movie.data,

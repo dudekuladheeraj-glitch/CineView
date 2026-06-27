@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { MediaPoster } from '../../../../Common'
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export const MovieCard = ({ movie }: Props) => {
+  const { t } = useTranslation(['movies', 'common'])
   const navigate = useNavigate()
 
   const handleOpen = () => {
@@ -35,20 +37,17 @@ export const MovieCard = ({ movie }: Props) => {
       tabIndex={0}
       onClick={handleOpen}
       onKeyDown={handleKeyDown}
-      aria-label={`Open ${movie.title}`}
+      aria-label={t('movies:card.openMovie', { title: movie.title })}
     >
       <CardBody>
         <MediaPoster path={movie.poster_path} alt={movie.title} width="160px" />
-
         <Title>{movie.title}</Title>
-
         <MetaRow>
           <Rating>★ {movie.vote_average.toFixed(1)}</Rating>
-
           <WatchlistButton
             type="button"
-            aria-label="Add to watchlist"
-            title="Watchlist coming soon"
+            aria-label={t('movies:card.addToWatchlist')}
+            title={t('common:watchlistComingSoon')}
             onClick={(event) => event.stopPropagation()}
             disabled
           >

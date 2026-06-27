@@ -1,1 +1,46 @@
-{"appName":"CineView","comingSoon":"Coming soon"}
+{
+    "appName": "CineView",
+    "comingSoon": "Coming soon",
+    "nav": {
+      "home": "Home",
+      "search": "Search",
+      "watchlist": "Watchlist",
+      "lists": "Lists",
+      "settings": "Settings"
+    },
+    "async": {
+      "loading": "Loading...",
+      "empty": "No results found",
+      "error": "Failed to load content",
+      "retry": "Retry"
+    },
+    "storeErrors": {
+      "loadMovies": "Failed to load movies",
+      "loadMovieDetails": "Failed to load movie details",
+      "movieNotFound": "Movie not found",
+      "loadTvShow": "Failed to load TV show",
+      "tvShowNotFound": "TV show not found",
+      "loadSeason": "Failed to load season",
+      "searchFailed": "Search failed"
+    },
+    "errorBoundary": {
+      "title": "Something went wrong",
+      "tryAgain": "Try again"
+    },
+    "media": {
+      "noImage": "No image"
+    },
+    "notFound": {
+      "title": "404 - Page Not Found",
+      "description": "The page you requested does not exist."
+    },
+    "search": {
+      "placeholder": "Search movies & shows...",
+      "ariaLabel": "Search"
+    },
+    "userMenu": {
+      "loggedInAs": "Logged in as {{username}}",
+      "logout": "Logout"
+    },
+    "watchlistComingSoon": "Watchlist coming soon"
+  }

@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useAuthStore } from '../../data/stores/providers'
 
 export const useLoginController = () => {
+  const { t } = useTranslation('auth')
   const authStore = useAuthStore()
 
   const [username, setUsername] = useState('cineview')
@@ -19,12 +21,12 @@ export const useLoginController = () => {
     setAuthError('')
 
     if (!username.trim()) {
-      setUsernameError('Username is required')
+      setUsernameError(t('errors.usernameRequired'))
       isValid = false
     }
 
     if (!password.trim()) {
-      setPasswordError('Password is required')
+      setPasswordError(t('errors.passwordRequired'))
       isValid = false
     }
 
@@ -35,7 +37,7 @@ export const useLoginController = () => {
     const success = authStore.login(username, password)
 
     if (!success) {
-      setAuthError('Invalid username or password')
+      setAuthError(t('errors.invalidCredentials'))
     }
 
     return success
@@ -44,14 +46,11 @@ export const useLoginController = () => {
   return {
     username,
     password,
-
     usernameError,
     passwordError,
     authError,
-
     setUsername,
     setPassword,
-
     submitLogin,
   }
 }

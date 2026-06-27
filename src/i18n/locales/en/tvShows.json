@@ -1,1 +1,28 @@
-{"shows":"TV Shows"}
+{
+    "detail": {
+      "loading": "Loading TV show...",
+      "loadFailed": "Failed to load TV show",
+      "noOverview": "No description available."
+    },
+    "errors": {
+      "details": "Unable to load TV show details",
+      "seasons": "Unable to load seasons",
+      "episodes": "Unable to load episodes"
+    },
+    "seasons": {
+      "ariaLabel": "Seasons",
+      "title": "Seasons"
+    },
+    "seasonCount_one": "{{count}} Season",
+    "seasonCount_other": "{{count}} Seasons",
+    "addToWatchlist": "+ Watchlist",
+    "episodes": {
+      "fallbackTitle": "Episodes",
+      "sectionAria": "{{seasonTitle}} episodes",
+      "empty": "No episodes available",
+      "markWatched": "Mark episode {{number}} as watched",
+      "trackingComingSoon": "Episode tracking coming soon",
+      "airedOn": "Aired: {{date}}",
+      "noOverview": "No description available."
+    }
+  }

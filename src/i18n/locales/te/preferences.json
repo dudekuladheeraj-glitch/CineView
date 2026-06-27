@@ -1,1 +1,26 @@
-{"settings":"సెట్టింగ్స్"}
+{
+    "settings": "సెట్టింగ్స్",
+    "languageSection": "భాష",
+    "languageLabel": "ప్రదర్శన భాష",
+    "language": {
+      "en": "ఇంగ్లీష్",
+      "te": "తెలుగు"
+    },
+    "regionSection": "ప్రాంతం",
+    "regionLabel": "కంటెంట్ ప్రాంతం",
+    "region": {
+      "IN": "భారతదేశం",
+      "US": "అమెరికా"
+    },
+    "appearanceSection": "రూపం",
+    "themeLabel": "థీమ్",
+    "theme": {
+      "system": "సిస్టమ్",
+      "light": "లైట్",
+      "dark": "డార్క్"
+    },
+    "accountSection": "ఖాతా",
+    "loggedInAs": "{{username}} గా లాగిన్ అయ్యారు",
+    "logout": "లాగ్ అవుట్",
+    "selectLanguageAria": "భాషను ఎంచుకోండి"
+  }

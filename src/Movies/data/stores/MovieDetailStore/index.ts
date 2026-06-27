@@ -1,7 +1,8 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 
-import { getYoutubeTrailerKey } from '../../../../Common'
+import { getYoutubeTrailerKey, resolveStoreError } from '../../../../Common'
 import { TmdbApiError } from '../../../../Common/core/errors/Tmdb.errors'
+import i18n from '../../../../i18n'
 import type {
     MovieDetailPageStatus,
     MovieDetailSectionState,
@@ -49,7 +50,7 @@ export class MovieDetailStore {
       return error.message
     }
 
-    return 'Failed to load movie details'
+    return resolveStoreError(error, 'common:storeErrors.loadMovieDetails')
   }
 
   clear() {
@@ -89,7 +90,7 @@ export class MovieDetailStore {
       runInAction(() => {
         if (error instanceof TmdbApiError && error.statusCode === 404) {
           this.pageStatus = 'notFound'
-          this.pageError = 'Movie not found'
+          this.pageError = i18n.t('common:storeErrors.movieNotFound')
           return
         }
 

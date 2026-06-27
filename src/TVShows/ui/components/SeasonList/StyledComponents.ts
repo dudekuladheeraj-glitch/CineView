@@ -11,6 +11,7 @@ export const Section = styled.section`
 export const Title = styled.h2`
   margin: 0;
   font-size: 1.25rem;
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const List = styled.div`
@@ -24,14 +25,14 @@ export const SeasonLink = styled(NavLink)`
   align-items: center;
   padding: 8px 14px;
   border-radius: 999px;
-  border: 1px solid #d1d5db;
+  border: 1px solid ${({ theme }) => theme.colors.border};
   text-decoration: none;
-  color: #374151;
-  background: #ffffff;
+  color: ${({ theme }) => theme.colors.text};
+  background: ${({ theme }) => theme.colors.surface};
 
   &.active {
-    border-color: #2563eb;
-    background: #dbeafe;
-    color: #1d4ed8;
+    border-color: ${({ theme }) => theme.colors.accent};
+    background: ${({ theme }) => theme.colors.accentSurface};
+    color: ${({ theme }) => theme.colors.accentText};
   }
 `

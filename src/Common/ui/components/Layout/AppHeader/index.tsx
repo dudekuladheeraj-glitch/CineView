@@ -1,3 +1,6 @@
+import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
+
 import { ROUTES } from '../../../../core/constants/Routes.constants'
 import { AppLogo } from '../AppLogo'
 import { AppSearch } from '../AppSearch'
@@ -11,32 +14,38 @@ import {
   StyledNavLink,
 } from './StyledComponents'
 
-const NAV_ITEMS = [
-  { to: ROUTES.home, label: 'Home', end: true },
-  { to: ROUTES.search, label: 'Search', end: false },
-  { to: ROUTES.watchlist, label: 'Watchlist', end: false },
-  { to: ROUTES.lists, label: 'Lists', end: false },
-  { to: ROUTES.settings, label: 'Settings', end: false },
+const NAV_ROUTES = [
+  { to: ROUTES.home, key: 'home', end: true },
+  { to: ROUTES.search, key: 'search', end: false },
+  { to: ROUTES.watchlist, key: 'watchlist', end: false },
+  { to: ROUTES.lists, key: 'lists', end: false },
+  { to: ROUTES.settings, key: 'settings', end: false },
 ] as const
 
-export const AppHeader = () => (
-  <HeaderRoot>
-    <LeftSection>
-      <AppLogo />
+const AppHeaderComponent = () => {
+  const { t } = useTranslation('common')
 
-      <NavLinks>
-        {NAV_ITEMS.map(({ to, label, end }) => (
-          <StyledNavLink key={to} to={to} end={end}>
-            {label}
-          </StyledNavLink>
-        ))}
-      </NavLinks>
-    </LeftSection>
+  return (
+    <HeaderRoot>
+      <LeftSection>
+        <AppLogo />
 
-    <RightSection>
-      <AppSearch />
-      <LanguageSwitcher />
-      <UserMenu />
-    </RightSection>
-  </HeaderRoot>
-)
+        <NavLinks>
+          {NAV_ROUTES.map(({ to, key, end }) => (
+            <StyledNavLink key={to} to={to} end={end}>
+              {t(`nav.${key}`)}
+            </StyledNavLink>
+          ))}
+        </NavLinks>
+      </LeftSection>
+
+      <RightSection>
+        <AppSearch />
+        <LanguageSwitcher />
+        <UserMenu />
+      </RightSection>
+    </HeaderRoot>
+  )
+}
+
+export const AppHeader = observer(AppHeaderComponent)

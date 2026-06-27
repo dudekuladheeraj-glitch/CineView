@@ -1,4 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from 'react'
+import i18n from '../../../../i18n'
 
 import {
   FallbackMessage,
@@ -44,11 +45,13 @@ export class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <FallbackWrapper role="alert">
-          <FallbackTitle>{this.props.fallbackTitle ?? 'Something went wrong'}</FallbackTitle>
+          <FallbackTitle>
+            {this.props.fallbackTitle ?? i18n.t('common:errorBoundary.title')}
+          </FallbackTitle>
           <FallbackMessage>{this.state.errorMessage}</FallbackMessage>
           {this.props.onRetry ? (
             <RetryButton type="button" onClick={this.handleRetry}>
-              Try again
+              {i18n.t('common:errorBoundary.tryAgain')}
             </RetryButton>
           ) : null}
         </FallbackWrapper>

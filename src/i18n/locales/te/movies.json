@@ -1,1 +1,56 @@
-{"home":"హోమ్"}
+{
+    "rows": {
+      "trending": "ట్రెండింగ్",
+      "popular": "జనాదరణ పొందినవి",
+      "topRated": "అత్యుత్తమ రేటింగ్",
+      "upcoming": "రాబోయేవి"
+    },
+    "genreFilter": {
+      "ariaLabel": "జాంలా ఫిల్టర్",
+      "title": "జాంలా ప్రకారం బ్రౌజ్ చేయండి",
+      "all": "అన్నీ"
+    },
+    "hero": {
+      "featuredMovie": "ఫీచర్ సినిమా: {{title}}",
+      "playTrailer": "ట్రైలర్ చూడండి"
+    },
+    "trailer": {
+      "defaultTitle": "ట్రైలర్",
+      "dialogLabel": "{{title}} ట్రైలర్",
+      "closeAria": "ట్రైలర్ మూసివేయండి"
+    },
+    "card": {
+      "openMovie": "{{title}} తెరవండి",
+      "addToWatchlist": "వాచ్‌లిస్ట్‌కు జోడించండి"
+    },
+    "detail": {
+      "loading": "సినిమా వివరాలు లోడ్ అవుతున్నాయి...",
+      "loadFailed": "సినిమా లోడ్ చేయడం విఫలమైంది",
+      "noOverview": "వివరణ అందుబాటులో లేదు.",
+      "runtimeMinutes": "{{count}} నిమి",
+      "runtimeMinutes_other": "{{count}} నిమి",
+      "addToWatchlist": "+ వాచ్‌లిస్ట్",
+      "similarMovies": "ఇలాంటి సినిమాలు",
+      "recommended": "సిఫార్సు చేసినవి"
+    },
+    "cast": {
+      "ariaLabel": "నటీనటులు",
+      "title": "నటీనటులు",
+      "empty": "నటీనటుల సమాచారం లేదు"
+    },
+    "home": {
+      "featuredError": "ఫీచర్ సినిమా లోడ్ చేయడం సాధ్యపడలేదు",
+      "rowError": "{{title}} లోడ్ చేయడం సాధ్యపడలేదు",
+      "noMovies": "చూపించడానికి సినిమాలు లేవు",
+      "noGenreMatch": "ఎంచుకున్న జాంలాకు సినిమాలు లేవు"
+    },
+    "errors": {
+      "header": "సినిమా హెడర్ లోడ్ చేయడం సాధ్యపడలేదు",
+      "cast": "నటీనటులు లోడ్ చేయడం సాధ్యపడలేదు",
+      "similar": "ఇలాంటి సినిమాలు లోడ్ చేయడం సాధ్యపడలేదు",
+      "recommendations": "సిఫార్సులు లోడ్ చేయడం సాధ్యపడలేదు"
+    },
+    "contentRow": {
+      "empty": "చూపించడానికి సినిమాలు లేవు"
+    }
+  }

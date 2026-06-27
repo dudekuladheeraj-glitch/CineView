@@ -1,11 +1,14 @@
 import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
 
 import { AsyncState, ErrorBoundary, PageContainer } from '../../../Common'
 import { SearchBar } from '../components/SearchBar'
 import { SearchResultsSection } from '../components/SearchResultsSection'
 import { useSearchController } from '../controllers/useSearchController'
+import { IdleHint } from './StyledComponents'
 
 const SearchPageComponent = () => {
+  const { t } = useTranslation('search')
   const {
     query,
     status,
@@ -35,47 +38,43 @@ const SearchPageComponent = () => {
         onRecentSelect={selectRecentSearch}
       />
 
-{!hasQuery ? (
-  <p style={{ textAlign: 'center', color: '#6b7280' }}>
-    Start typing to search the TMDB catalogue
-  </p>
-) : null}
+      {!hasQuery ? <IdleHint>{t('idleHint')}</IdleHint> : null}
 
       {showEmpty ? (
-        <AsyncState status="success" isEmpty emptyText="No results found for your search" />
+        <AsyncState status="success" isEmpty emptyText={t('noResults')} />
       ) : null}
 
       {hasQuery && status === 'loading' ? (
-        <AsyncState status="loading" loadingText="Searching..." />
+        <AsyncState status="loading" loadingText={t('searching')} />
       ) : null}
 
       {hasQuery && status === 'error' ? (
-        <AsyncState status="error" error={error ?? 'Search failed'} />
+        <AsyncState status="error" error={error ?? t('searchFailed')} />
       ) : null}
 
       {hasQuery && status === 'success' ? (
         <>
-          <ErrorBoundary fallbackTitle="Unable to load movie results">
+          <ErrorBoundary fallbackTitle={t('errors.movies')}>
             <SearchResultsSection
-              title="Movies"
+              title={t('sections.movies')}
               type="movie"
               items={movies}
               status="success"
             />
           </ErrorBoundary>
 
-          <ErrorBoundary fallbackTitle="Unable to load TV show results">
+          <ErrorBoundary fallbackTitle={t('errors.tvShows')}>
             <SearchResultsSection
-              title="TV Shows"
+              title={t('sections.tvShows')}
               type="tv"
               items={tvShows}
               status="success"
             />
           </ErrorBoundary>
 
-          <ErrorBoundary fallbackTitle="Unable to load people results">
+          <ErrorBoundary fallbackTitle={t('errors.people')}>
             <SearchResultsSection
-              title="People"
+              title={t('sections.people')}
               type="person"
               items={people}
               status="success"

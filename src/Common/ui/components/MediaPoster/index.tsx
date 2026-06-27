@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { getPosterUrl } from '../../../core/utils/TmdbImage.utils'
 import { PlaceholderContent, PosterImage, PosterWrapper } from './StyledComponents'
 
@@ -18,6 +20,7 @@ export const MediaPoster = ({
   aspectRatio,
   className,
 }: Props) => {
+  const { t } = useTranslation('common')
   const imageUrl = getPosterUrl(path ?? null, size)
 
   return (
@@ -25,7 +28,7 @@ export const MediaPoster = ({
       {imageUrl ? (
         <PosterImage src={imageUrl} alt={alt} loading="lazy" />
       ) : (
-        <PlaceholderContent aria-label={alt}>No image</PlaceholderContent>
+        <PlaceholderContent aria-label={alt}>{t('media.noImage')}</PlaceholderContent>
       )}
     </PosterWrapper>
   )

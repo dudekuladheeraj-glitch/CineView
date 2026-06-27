@@ -8,6 +8,7 @@ import {
   saveRecentSearch,
 } from '../../../core/utils/Search.utils'
 import type { SearchService } from '../../services/SearchService'
+import { resolveStoreError } from '../../../../Common'
 
 const emptyResults = (): GroupedSearchResults => ({
   movies: [],
@@ -37,7 +38,7 @@ export class SearchStore {
   private getErrorMessage(error: unknown) {
     if (error instanceof TmdbApiError) return error.message
     if (error instanceof Error) return error.message
-    return 'Search failed'
+    return resolveStoreError(error, 'common:storeErrors.searchFailed')
   }
 
   async search(query: string, language: string) {

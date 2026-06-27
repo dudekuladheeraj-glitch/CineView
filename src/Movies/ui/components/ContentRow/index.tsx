@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { AsyncState } from '../../../../Common'
 import type { AsyncStatus } from '../../../../Common/core/types/Common.types'
 import type { MovieSummary } from '../../../../Common/core/types/Tmdb.types'
@@ -18,9 +20,11 @@ export const ContentRow = ({
   items,
   status,
   error,
-  emptyText = 'No movies to show',
+  emptyText,
   onRetry,
 }: Props) => {
+  const { t } = useTranslation('movies')
+
   return (
     <RowSection aria-label={title}>
       <RowHeader>
@@ -30,7 +34,7 @@ export const ContentRow = ({
         status={status}
         error={error}
         isEmpty={status === 'success' && items.length === 0}
-        emptyText={emptyText}
+        emptyText={emptyText ?? t('contentRow.empty')}
         onRetry={onRetry}
       >
         <ScrollTrack>

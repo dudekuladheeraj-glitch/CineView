@@ -16,11 +16,13 @@ export const useTVShowDetailController = () => {
     if (!parsedTvId || Number.isNaN(parsedTvId)) return
 
     void tvShowDetailStore.fetchTVShowDetail(parsedTvId, language)
+  }, [tvShowDetailStore, parsedTvId, language])
 
+  useEffect(() => {
     return () => {
       tvShowDetailStore.clear()
     }
-  }, [tvShowDetailStore, parsedTvId, language])
+  }, [tvShowDetailStore])
 
   return {
     tvShow: tvShowDetailStore.tvShow.data,

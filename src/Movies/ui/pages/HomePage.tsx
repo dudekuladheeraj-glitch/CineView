@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
 
 import { ErrorBoundary, PageContainer } from '../../../Common'
 import { ContentRow } from '../components/ContentRow'
@@ -8,6 +9,7 @@ import { TrailerModal } from '../components/TrailerModal'
 import { useHomeController } from '../controllers/useHomeController'
 
 const HomePageComponent = () => {
+  const { t } = useTranslation('movies')
   const {
     heroMovie,
     heroTrailerKey,
@@ -22,7 +24,7 @@ const HomePageComponent = () => {
 
   return (
     <PageContainer>
-      <ErrorBoundary fallbackTitle="Unable to load featured movie">
+      <ErrorBoundary fallbackTitle={t('home.featuredError')}>
         <HeroBanner
           movie={heroMovie}
           trailerKey={heroTrailerKey}
@@ -39,7 +41,7 @@ const HomePageComponent = () => {
       {rows.map((row) => (
         <ErrorBoundary
           key={row.key}
-          fallbackTitle={`Unable to load ${row.title}`}
+          fallbackTitle={t('home.rowError', { title: row.title })}
           onRetry={row.onRetry}
         >
           <ContentRow
@@ -49,9 +51,7 @@ const HomePageComponent = () => {
             error={row.error}
             onRetry={row.onRetry}
             emptyText={
-              selectedGenreId
-                ? 'No movies match the selected genre'
-                : 'No movies to show'
+              selectedGenreId ? t('home.noGenreMatch') : t('home.noMovies')
             }
           />
         </ErrorBoundary>
@@ -60,7 +60,7 @@ const HomePageComponent = () => {
       <TrailerModal
         isOpen={isTrailerOpen}
         videoKey={heroTrailerKey}
-        title={heroMovie?.title ?? 'Trailer'}
+        title={heroMovie?.title ?? t('trailer.defaultTitle')}
         onClose={closeTrailer}
       />
     </PageContainer>

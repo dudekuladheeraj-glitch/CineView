@@ -1,5 +1,8 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import { STORAGE_KEYS } from '../Common/core/constants/Storage.constants'
+import { DEFAULT_PREFERENCES } from '../Preferences/core/constants/Preferences.constants'
+import type { PreferencesState } from '../Preferences/core/types/Preferences.types'
 
 import commonEn from './locales/en/common.json'
 import authEn from './locales/en/auth.json'
@@ -17,10 +20,29 @@ import searchTe from './locales/te/search.json'
 import collectionTe from './locales/te/collection.json'
 import preferencesTe from './locales/te/preferences.json'
 
+const getStoredLanguage = (): string => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.preferences)
+
+    if (raw) {
+      const parsed = JSON.parse(raw) as PreferencesState
+      return parsed.language ?? DEFAULT_PREFERENCES.language
+    }
+  } catch {
+    // fall through to default
+  }
+
+  return DEFAULT_PREFERENCES.language
+}
+
 void i18n.use(initReactI18next).init({
-  lng: 'en',
+  lng: getStoredLanguage(),
   fallbackLng: 'en',
   defaultNS: 'common',
+  compatibilityJSON: 'v4',
+  interpolation: {
+    escapeValue: false,
+  },
   resources: {
     en: {
       common: commonEn,

@@ -1,1 +1,56 @@
-{"home":"Home"}
+{
+    "rows": {
+      "trending": "Trending",
+      "popular": "Popular",
+      "topRated": "Top Rated",
+      "upcoming": "Upcoming"
+    },
+    "genreFilter": {
+      "ariaLabel": "Genre filter",
+      "title": "Browse by Genre",
+      "all": "All"
+    },
+    "hero": {
+      "featuredMovie": "Featured movie: {{title}}",
+      "playTrailer": "Play Trailer"
+    },
+    "trailer": {
+      "defaultTitle": "Trailer",
+      "dialogLabel": "{{title}} trailer",
+      "closeAria": "Close trailer"
+    },
+    "card": {
+      "openMovie": "Open {{title}}",
+      "addToWatchlist": "Add to watchlist"
+    },
+    "detail": {
+      "loading": "Loading movie details...",
+      "loadFailed": "Failed to load movie",
+      "runtimeMinutes": "{{count}} min",
+      "runtimeMinutes_other": "{{count}} min",
+      "addToWatchlist": "+ Watchlist",
+      "similarMovies": "Similar Movies",
+      "recommended": "Recommended",
+      "noOverview": "No overview available."
+    },
+    "cast": {
+      "ariaLabel": "Cast",
+      "title": "Cast",
+      "empty": "No cast information available"
+    },
+    "home": {
+      "featuredError": "Unable to load featured movie",
+      "rowError": "Unable to load {{title}}",
+      "noMovies": "No movies to show",
+      "noGenreMatch": "No movies match the selected genre"
+    },
+    "errors": {
+      "header": "Unable to load movie header",
+      "cast": "Unable to load cast",
+      "similar": "Unable to load similar movies",
+      "recommendations": "Unable to load recommendations"
+    },
+    "contentRow": {
+      "empty": "No movies to show"
+    }
+  }

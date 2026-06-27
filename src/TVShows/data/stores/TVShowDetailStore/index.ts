@@ -1,4 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx'
+import { resolveStoreError } from '../../../../Common'
+import i18n from '../../../../i18n'
 
 import { TmdbApiError } from '../../../../Common/core/errors/Tmdb.errors'
 import type { TvDetail } from '../../../../Common/core/types/Tmdb.types'
@@ -27,13 +29,13 @@ export class TVShowDetailStore {
   private getErrorMessage(error: unknown) {
     if (error instanceof TmdbApiError) return error.message
     if (error instanceof Error) return error.message
-    return 'Failed to load TV show'
+    return resolveStoreError(error, 'common:storeErrors.loadTvShow')
   }
 
   clear() {
     this.tvId = null
     this.pageStatus = 'idle'
-    this.pageError = null
+    this.pageError = i18n.t('common:storeErrors.loadTvShow')
     this.tvShow = createTVShowSection()
   }
 

@@ -15,9 +15,39 @@ describe('TMDB Zod schemas', () => {
     expect(result.success).toBe(true)
   })
 
-  it('rejects a movie summary without required fields', () => {
+  it('accepts a minimal movie summary with defaults', () => {
     const result = movieSummarySchema.safeParse({
       id: 1,
+      title: 'Test Movie',
+    })
+
+    expect(result.success).toBe(true)
+
+    if (result.success) {
+      expect(result.data.poster_path).toBeNull()
+      expect(result.data.backdrop_path).toBeNull()
+      expect(result.data.vote_average).toBe(0)
+      expect(result.data.overview).toBe('')
+    }
+  })
+
+  it('coerces null title to empty string', () => {
+    const result = movieSummarySchema.safeParse({
+      id: 1,
+      title: null,
+      poster_path: null,
+      backdrop_path: null,
+    })
+
+    expect(result.success).toBe(true)
+
+    if (result.success) {
+      expect(result.data.title).toBe('')
+    }
+  })
+
+  it('rejects a movie summary without id', () => {
+    const result = movieSummarySchema.safeParse({
       title: 'Test Movie',
     })
 

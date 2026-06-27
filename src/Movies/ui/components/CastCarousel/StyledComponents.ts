@@ -10,7 +10,7 @@ export const Section = styled.section`
 export const Title = styled.h2`
   margin: 0;
   font-size: 1.35rem;
-  color: #111827;
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const ScrollTrack = styled.div`
@@ -31,11 +31,11 @@ export const CastCard = styled.div`
 export const CastName = styled.h3`
   margin: 0;
   font-size: 0.9rem;
-  color: #111827;
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const CastCharacter = styled.p`
   margin: 0;
   font-size: 0.8rem;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textMuted};
 `

@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Input, InputRow, BarRoot, RecentChip, RecentList, SearchIcon } from './StyledComponents'
 
@@ -10,6 +11,8 @@ interface Props {
 }
 
 export const SearchBar = ({ value, recentSearches, onChange, onRecentSelect }: Props) => {
+  const { t } = useTranslation('search')
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value)
   }
@@ -22,13 +25,13 @@ export const SearchBar = ({ value, recentSearches, onChange, onRecentSelect }: P
           type="search"
           value={value}
           onChange={handleChange}
-          placeholder="Search movies, TV shows, and people..."
-          aria-label="Search"
+          placeholder={t('placeholder')}
+          aria-label={t('ariaLabel')}
         />
       </InputRow>
 
       {recentSearches.length > 0 ? (
-        <RecentList aria-label="Recent searches">
+        <RecentList aria-label={t('recentSearches')}>
           {recentSearches.map((term) => (
             <RecentChip key={term} type="button" onClick={() => onRecentSelect(term)}>
               {term}

@@ -11,8 +11,8 @@ export const HeaderRoot = styled.header`
   gap: 16px;
   height: 60px;
   padding: 0 24px;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  background: ${({ theme }) => theme.colors.surface};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 `
 
 export const LeftSection = styled.div`
@@ -37,18 +37,18 @@ export const StyledNavLink = styled(NavLink)`
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textMuted};
   text-decoration: none;
   transition: background 0.15s ease, color 0.15s ease;
 
   &:hover {
-    background: #f3f4f6;
-    color: #111827;
+    background: ${({ theme }) => theme.colors.surfaceMuted};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   &.active {
-    background: #f3f4f6;
-    color: #111827;
+    background: ${({ theme }) => theme.colors.surfaceMuted};
+    color: ${({ theme }) => theme.colors.text};
     font-weight: 600;
   }
 `

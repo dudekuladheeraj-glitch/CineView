@@ -1,13 +1,9 @@
 import { observer } from 'mobx-react-lite'
-import { useLocation ,useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { LoginForm } from '../components/LoginForm'
 import { useLoginController } from '../controllers/useLoginController'
-
-
-
-
-
 import {
   Brand,
   CardContainer,
@@ -17,6 +13,7 @@ import {
 } from './StyledComponents'
 
 const LoginPageComponent = () => {
+  const { t } = useTranslation('auth')
   const navigate = useNavigate()
   const location = useLocation()
   const state = location.state as { from?: { pathname: string } } | null
@@ -24,14 +21,11 @@ const LoginPageComponent = () => {
   const {
     username,
     password,
-
     usernameError,
     passwordError,
     authError,
-
     setUsername,
     setPassword,
-
     submitLogin,
   } = useLoginController()
 
@@ -46,15 +40,9 @@ const LoginPageComponent = () => {
   return (
     <PageContainer>
       <CardContainer>
-        <Brand>CineView</Brand>
-
-        <Title>Welcome Back</Title>
-
-        <Description>
-        Track movies, discover TV shows,
-        build watchlists and explore
-        everything you love about movies and TV shows.
-        </Description>
+        <Brand>{t('brand')}</Brand>
+        <Title>{t('welcomeBack')}</Title>
+        <Description>{t('description')}</Description>
 
         <LoginForm
           username={username}

@@ -1,1 +1,14 @@
-{"watchlist":"Watchlist"}
+{
+    "watchlist": {
+      "title": "Watchlist Page",
+      "description": "Watchlist will be implemented in Milestone 5."
+    },
+    "lists": {
+      "title": "My Lists Page",
+      "description": "Custom lists will be implemented in Milestone 6."
+    },
+    "listDetail": {
+      "title": "List Detail Page",
+      "description": "List details will be implemented in Milestone 6."
+    }
+  }

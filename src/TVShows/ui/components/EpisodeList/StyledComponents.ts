@@ -10,6 +10,7 @@ export const Section = styled.section`
 export const Title = styled.h2`
   margin: 0;
   font-size: 1.25rem;
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const EpisodeCard = styled.article`
@@ -17,7 +18,7 @@ export const EpisodeCard = styled.article`
   grid-template-columns: 28px 120px 1fr;
   gap: 16px;
   padding: 16px 0;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
   @media (max-width: 768px) {
     grid-template-columns: 28px 1fr;
@@ -27,18 +28,19 @@ export const EpisodeCard = styled.article`
 export const EpisodeTitle = styled.h3`
   margin: 0 0 6px;
   font-size: 1rem;
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const EpisodeMeta = styled.p`
   margin: 0 0 8px;
   font-size: 0.85rem;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textMuted};
 `
 
 export const EpisodeOverview = styled.p`
   margin: 0;
   line-height: 1.5;
-  color: #374151;
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const Checkbox = styled.input`

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { AppButton } from '../../../../Common'
 import type { MovieDetail } from '../../../../Common/core/types/Tmdb.types'
 import { getBackdropUrl } from '../../../../Common/core/utils/TmdbImage.utils'
@@ -25,8 +27,12 @@ interface Props {
 }
 
 export const MovieDetailHeader = ({ movie, trailerKey, onPlayTrailer }: Props) => {
+  const { t } = useTranslation(['movies', 'common'])
+  const overviewText = movie.overview?.trim() || t('detail.noOverview')
   const backdropUrl = getBackdropUrl(movie.backdrop_path, 'w1280')
-  const runtimeLabel = movie.runtime ? `${movie.runtime} min` : null
+  const runtimeLabel = movie.runtime
+    ? t('movies:detail.runtimeMinutes', { count: movie.runtime })
+    : null
   const releaseYear = movie.release_date ? movie.release_date.slice(0, 4) : null
 
   return (
@@ -46,15 +52,15 @@ export const MovieDetailHeader = ({ movie, trailerKey, onPlayTrailer }: Props) =
               <MetaBadge key={genre.id}>{genre.name}</MetaBadge>
             ))}
           </MetaRow>
-          {movie.overview ? <Overview>{movie.overview}</Overview> : null}
+          <Overview>{overviewText}</Overview>
           <Actions>
             {trailerKey && onPlayTrailer ? (
               <AppButton type="button" onClick={onPlayTrailer}>
-                Play Trailer
+                {t('movies:hero.playTrailer')}
               </AppButton>
             ) : null}
-            <WatchlistButton type="button" disabled title="Watchlist coming soon">
-              + Watchlist
+            <WatchlistButton type="button" disabled title={t('common:watchlistComingSoon')}>
+              {t('movies:detail.addToWatchlist')}
             </WatchlistButton>
           </Actions>
         </Info>

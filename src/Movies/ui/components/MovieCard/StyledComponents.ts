@@ -17,7 +17,7 @@ export const CardBody = styled.div`
 export const Title = styled.h3`
   margin: 0;
   font-size: 0.95rem;
-  color: #111827;
+  color: ${({ theme }) => theme.colors.text};
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -35,19 +35,19 @@ export const MetaRow = styled.div`
 export const Rating = styled.span`
   font-size: 0.8rem;
   font-weight: 600;
-  color: #b45309;
+  color: ${({ theme }) => theme.colors.rating};
 `
 
 export const WatchlistButton = styled.button`
-  border: 1px solid #d1d5db;
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 999px;
   width: 32px;
   height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
-  color: #6b7280;
+  background: ${({ theme }) => theme.colors.surface};
+  color: ${({ theme }) => theme.colors.textMuted};
   cursor: not-allowed;
   opacity: 0.7;
 `

@@ -11,10 +11,10 @@ export const genreListResponseSchema = z.object({
 
 export const movieSummarySchema = z.object({
   id: z.number(),
-  title: z.string(),
-  poster_path: z.string().nullable(),
-  backdrop_path: z.string().nullable(),
-  vote_average: z.number(),
+  title: z.preprocess((value) => value ?? '', z.string()),
+  poster_path: z.string().nullable().optional().default(null),
+  backdrop_path: z.string().nullable().optional().default(null),
+  vote_average: z.number().default(0),
   overview: z.string().optional().default(''),
   genre_ids: z.array(z.number()).optional(),
   release_date: z.string().optional(),
@@ -36,10 +36,10 @@ export const movieDetailSchema = movieSummarySchema.extend({
 
 export const tvSummarySchema = z.object({
   id: z.number(),
-  name: z.string(),
-  poster_path: z.string().nullable(),
-  backdrop_path: z.string().nullable(),
-  vote_average: z.number(),
+  name: z.preprocess((value) => value ?? '', z.string()),
+  poster_path: z.string().nullable().optional().default(null),
+  backdrop_path: z.string().nullable().optional().default(null),
+  vote_average: z.number().default(0),
   overview: z.string().optional().default(''),
   genre_ids: z.array(z.number()).optional(),
   first_air_date: z.string().optional(),

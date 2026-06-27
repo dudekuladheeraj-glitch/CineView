@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 
-import { getYoutubeTrailerKey } from '../../../../Common'
+import { getYoutubeTrailerKey, resolveStoreError } from '../../../../Common'
 import { TmdbApiError } from '../../../../Common/core/errors/Tmdb.errors'
 import {
   HOME_ROW_KEYS,
@@ -45,6 +45,7 @@ export class HomeStore {
     }
   }
 
+  
   private setRowSuccess(key: HomeRowKey, items: HomeRowState['items']) {
     this.rows[key] = {
       status: 'success',
@@ -71,7 +72,7 @@ export class HomeStore {
       return error.message
     }
 
-    return 'Failed to load movies'
+    return resolveStoreError(error, 'common:storeErrors.loadMovies')
   }
 
   async fetchRow(key: HomeRowKey, language: string, region: string) {

@@ -9,17 +9,16 @@ export const Container = styled.form`
 
 export const ErrorText = styled.p`
   margin: 0;
-  color: #dc2626;
+  color: ${({ theme }) => theme.colors.danger};
   font-size: 0.9rem;
 `
 
 export const CredentialsHint = styled.div`
   padding: 14px;
   border-radius: 12px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-
-  color: #4b5563;
+  background: ${({ theme }) => theme.colors.surfaceMuted};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  color: ${({ theme }) => theme.colors.textMuted};
   font-size: 0.88rem;
   line-height: 1.6;
 `
@@ -33,7 +32,7 @@ export const PasswordWrapper = styled.div`
 export const PasswordLabel = styled.label`
   font-size: 0.9rem;
   font-weight: 600;
-  color: #111827;
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const PasswordInputRow = styled.div`
@@ -47,20 +46,22 @@ export const PasswordInput = styled.input<{ $hasError: boolean }>`
   width: 100%;
   padding: 10px 44px 10px 12px;
   border-radius: 10px;
-  border: 1px solid ${({ $hasError }) => ($hasError ? '#dc2626' : '#d1d5db')};
+  border: 1px solid
+    ${({ theme, $hasError }) => ($hasError ? theme.colors.danger : theme.colors.border)};
   font-size: 0.95rem;
   outline: none;
   transition: border-color 0.2s ease;
-  background: #ffffff;
-  color: #111827;
+  background: ${({ theme }) => theme.colors.surface};
+  color: ${({ theme }) => theme.colors.text};
   box-sizing: border-box;
 
   &:focus {
-    border-color: ${({ $hasError }) => ($hasError ? '#dc2626' : '#111827')};
+    border-color: ${({ theme, $hasError }) =>
+      $hasError ? theme.colors.danger : theme.colors.primary};
   }
 
   &::placeholder {
-    color: #9ca3af;
+    color: ${({ theme }) => theme.colors.textMuted};
   }
 `
 
@@ -74,16 +75,16 @@ export const ToggleButton = styled.button`
   display: flex;
   align-items: center;
   font-size: 1rem;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textMuted};
   transition: color 0.15s ease;
 
   &:hover {
-    color: #111827;
+    color: ${({ theme }) => theme.colors.text};
   }
 `
 
 export const PasswordError = styled.p`
   margin: 0;
   font-size: 0.85rem;
-  color: #dc2626;
+  color: ${({ theme }) => theme.colors.danger};
 `

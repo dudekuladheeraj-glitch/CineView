@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { AsyncState } from '../../../../Common'
 import type { AsyncStatus } from '../../../../Common/core/types/Common.types'
 import type { CastMember } from '../../../../Common/core/types/Tmdb.types'
@@ -12,14 +14,16 @@ interface Props {
 }
 
 export const CastCarousel = ({ cast, status, error, onRetry }: Props) => {
+  const { t } = useTranslation('movies')
+
   return (
-    <Section aria-label="Cast">
-      <Title>Cast</Title>
+    <Section aria-label={t('cast.ariaLabel')}>
+      <Title>{t('cast.title')}</Title>
       <AsyncState
         status={status}
         error={error}
         isEmpty={status === 'success' && cast.length === 0}
-        emptyText="No cast information available"
+        emptyText={t('cast.empty')}
         onRetry={onRetry}
       >
         <ScrollTrack>

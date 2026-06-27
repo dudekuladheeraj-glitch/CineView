@@ -1,1 +1,46 @@
-{"appName":"సినీవ్యూ","comingSoon":"త్వరలో"}
+{
+    "appName": "సినీవ్యూ",
+    "comingSoon": "త్వరలో",
+    "nav": {
+      "home": "హోమ్",
+      "search": "శోధన",
+      "watchlist": "వాచ్‌లిస్ట్",
+      "lists": "జాబితాలు",
+      "settings": "సెట్టింగ్స్"
+    },
+    "async": {
+      "loading": "లోడ్ అవుతోంది...",
+      "empty": "ఫలితాలు లేవు",
+      "error": "కంటెంట్ లోడ్ చేయడం విఫలమైంది",
+      "retry": "మళ్లీ ప్రయత్నించండి"
+    },
+    "storeErrors": {
+      "loadMovies": "సినిమాలు లోడ్ చేయడం విఫలమైంది",
+      "loadMovieDetails": "సినిమా వివరాలు లోడ్ చేయడం విఫలమైంది",
+      "movieNotFound": "సినిమా కనుగొనబడలేదు",
+      "loadTvShow": "టీవీ షో లోడ్ చేయడం విఫలమైంది",
+      "tvShowNotFound": "టీవీ షో కనుగొనబడలేదు",
+      "loadSeason": "సీజన్ లోడ్ చేయడం విఫలమైంది",
+      "searchFailed": "శోధన విఫలమైంది"
+    },
+    "errorBoundary": {
+      "title": "ఏదో తప్పు జరిగింది",
+      "tryAgain": "మళ్లీ ప్రయత్నించండి"
+    },
+    "media": {
+      "noImage": "చిత్రం లేదు"
+    },
+    "notFound": {
+      "title": "404 - పేజీ కనుగొనబడలేదు",
+      "description": "మీరు అభ్యర్థించిన పేజీ లేదు."
+    },
+    "search": {
+      "placeholder": "సినిమాలు & షోలు శోధించండి...",
+      "ariaLabel": "శోధన"
+    },
+    "userMenu": {
+      "loggedInAs": "{{username}} గా లాగిన్ అయ్యారు",
+      "logout": "లాగ్ అవుట్"
+    },
+    "watchlistComingSoon": "వాచ్‌లిస్ట్ త్వరలో"
+  }

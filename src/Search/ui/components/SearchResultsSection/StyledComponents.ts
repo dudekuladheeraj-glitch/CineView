@@ -10,7 +10,7 @@ export const Section = styled.section`
 export const Title = styled.h2`
   margin: 0;
   font-size: 1.25rem;
-  color: #111827;
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const Grid = styled.div`
@@ -33,13 +33,13 @@ export const ResultCard = styled.button`
 export const ResultTitle = styled.h3`
   margin: 0;
   font-size: 0.9rem;
-  color: #111827;
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const ResultMeta = styled.p`
   margin: 0;
   font-size: 0.8rem;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textMuted};
 `
 
 export const PersonCard = styled.div`

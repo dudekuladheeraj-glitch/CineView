@@ -14,7 +14,7 @@ export const Overlay = styled.div`
 export const ModalCard = styled.div`
   position: relative;
   width: min(960px, 100%);
-  background: #111827;
+  background: ${({ theme }) => theme.colors.mediaBackdrop};
   border-radius: 16px;
   overflow: hidden;
 `
@@ -29,7 +29,7 @@ export const CloseButton = styled.button`
   width: 36px;
   height: 36px;
   background: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.onMedia};
   font-size: 1.25rem;
   cursor: pointer;
 `
@@ -44,6 +44,6 @@ export const VideoFrame = styled.iframe`
 export const ModalTitle = styled.h2`
   margin: 0;
   padding: 16px 20px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.onMedia};
   font-size: 1rem;
 `

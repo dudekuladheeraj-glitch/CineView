@@ -4,9 +4,14 @@ import {
   mapAppLanguageToTmdb,
   movieDetailSchema,
   paginatedMoviesSchema,
+  TMDB_DEFAULT_LANGUAGE,
   tmdbClient,
   videosResponseSchema,
 } from '../../../../Common'
+import {
+  mergeWithEnglishTextFallback,
+  needsEnglishTextFallback,
+} from '../../../../Common/core/utils/TmdbLocalization.utils'
 import { TMDB_MOVIE_ENDPOINTS } from '../../../core/constants/Movies.constants'
 import type { MoviesService } from './index'
 
@@ -52,9 +57,23 @@ export class MoviesServiceAPI implements MoviesService {
   }
 
   async getMovieDetail(movieId: number, language: string) {
-    return tmdbClient.get(`/movie/${movieId}`, movieDetailSchema, {
-      language: mapAppLanguageToTmdb(language),
+    const tmdbLanguage = mapAppLanguageToTmdb(language)
+    const detail = await tmdbClient.get(`/movie/${movieId}`, movieDetailSchema, {
+      language: tmdbLanguage,
     })
+
+    if (!needsEnglishTextFallback(language, detail)) {
+      return detail
+    }
+
+    try {
+      const englishDetail = await tmdbClient.get(`/movie/${movieId}`, movieDetailSchema, {
+        language: TMDB_DEFAULT_LANGUAGE,
+      })
+      return mergeWithEnglishTextFallback(detail, englishDetail)
+    } catch {
+      return detail
+    }
   }
 
   async getMovieCredits(movieId: number, language: string) {

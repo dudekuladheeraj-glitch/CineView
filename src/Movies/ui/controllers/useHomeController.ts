@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { usePreferencesStore } from '../../../Preferences/data/stores/providers'
 import {
   HOME_ROW_KEYS,
-  HOME_ROW_TITLES,
+  HOME_ROW_I18N_KEYS,
   type HomeRowKey,
 } from '../../core/constants/Movies.constants'
 import { filterMoviesByGenre } from '../../core/utils/Movies.utils'
 import { useHomeStore } from '../../data/stores/providers'
 
 export const useHomeController = () => {
+  const { t } = useTranslation('movies')
   const homeStore = useHomeStore()
   const preferencesStore = usePreferencesStore()
   const [selectedGenreId, setSelectedGenreId] = useState<number | null>(null)
@@ -30,7 +32,7 @@ export const useHomeController = () => {
 
   const rows = HOME_ROW_KEYS.map((key) => ({
     key,
-    title: HOME_ROW_TITLES[key],
+    title: t(HOME_ROW_I18N_KEYS[key]),
     status: homeStore.rows[key].status,
     error: homeStore.rows[key].error,
     items: getFilteredItems(key),
@@ -47,5 +49,6 @@ export const useHomeController = () => {
     isTrailerOpen,
     openTrailer: () => setIsTrailerOpen(true),
     closeTrailer: () => setIsTrailerOpen(false),
+    t,
   }
 }

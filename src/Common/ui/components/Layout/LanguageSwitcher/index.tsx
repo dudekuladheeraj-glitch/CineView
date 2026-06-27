@@ -1,28 +1,25 @@
-import { ChangeEvent } from 'react'
 import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
 import { usePreferencesStore } from '../../../../../Preferences/data/stores/providers'
 import type { AppLanguage } from '../../../../../Preferences/core/types/Preferences.types'
 import { Select } from './StyledComponents'
 
-const LANGUAGE_OPTIONS: { value: AppLanguage; label: string }[] = [
-  { value: 'en', label: 'English' },
-  { value: 'te', label: 'Telugu' },
-]
-
 const LanguageSwitcherComponent = () => {
+  const { t } = useTranslation('preferences')
   const preferencesStore = usePreferencesStore()
 
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    preferencesStore.setLanguage(event.target.value as AppLanguage)
-  }
+  const languageOptions: { value: AppLanguage; label: string }[] = [
+    { value: 'en', label: t('language.en') },
+    { value: 'te', label: t('language.te') },
+  ]
 
   return (
     <Select
       value={preferencesStore.preferences.language}
-      onChange={handleChange}
-      aria-label="Select language"
+      onChange={(event) => preferencesStore.setLanguage(event.target.value as AppLanguage)}
+      aria-label={t('selectLanguageAria')}
     >
-      {LANGUAGE_OPTIONS.map(({ value, label }) => (
+      {languageOptions.map(({ value, label }) => (
         <option key={value} value={value}>
           {label}
         </option>

@@ -18,11 +18,13 @@ export const useSeasonDetailController = () => {
     if (!parsedSeasonNumber || Number.isNaN(parsedSeasonNumber)) return
 
     void seasonDetailStore.fetchSeasonDetail(parsedTvId, parsedSeasonNumber, language)
+  }, [seasonDetailStore, parsedTvId, parsedSeasonNumber, language])
 
+  useEffect(() => {
     return () => {
       seasonDetailStore.clear()
     }
-  }, [seasonDetailStore, parsedTvId, parsedSeasonNumber, language])
+  }, [seasonDetailStore])
 
   return {
     episodes: seasonDetailStore.seasonState.episodes,

@@ -5,7 +5,7 @@ export const HeaderRoot = styled.section`
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 32px;
-  background: #111827;
+  background: ${({ theme }) => theme.colors.mediaBackdrop};
 `
 
 export const BackdropImage = styled.img`
@@ -19,7 +19,11 @@ export const BackdropImage = styled.img`
 export const BackdropFallback = styled.div`
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #1f2937, #111827);
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.primaryHover},
+    ${({ theme }) => theme.colors.mediaBackdrop}
+  );
 `
 
 export const Overlay = styled.div`
@@ -27,9 +31,9 @@ export const Overlay = styled.div`
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(17, 24, 39, 0.95) 0%,
-    rgba(17, 24, 39, 0.8) 50%,
-    rgba(17, 24, 39, 0.35) 100%
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.65) 50%,
+    rgba(0, 0, 0, 0.25) 100%
   );
 `
 
@@ -55,12 +59,12 @@ export const Info = styled.div`
 export const Title = styled.h1`
   margin: 0;
   font-size: clamp(1.75rem, 3vw, 2.5rem);
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.onMedia};
 `
 
 export const Tagline = styled.p`
   margin: 0;
-  color: #d1d5db;
+  color: ${({ theme }) => theme.colors.onMediaSubtle};
   font-style: italic;
 `
 
@@ -76,13 +80,13 @@ export const MetaBadge = styled.span`
   padding: 6px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
-  color: #f3f4f6;
+  color: ${({ theme }) => theme.colors.onMediaMuted};
   font-size: 0.85rem;
 `
 
 export const Overview = styled.p`
   margin: 0;
-  color: #e5e7eb;
+  color: ${({ theme }) => theme.colors.onMediaMuted};
   line-height: 1.6;
 `
 
@@ -93,11 +97,11 @@ export const Actions = styled.div`
 `
 
 export const WatchlistButton = styled.button`
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   padding: 10px 14px;
   background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.onMedia};
   cursor: not-allowed;
   opacity: 0.7;
 `

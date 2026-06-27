@@ -3,31 +3,31 @@ import type { AppButtonVariant } from './index'
 
 const variantStyles: Record<AppButtonVariant, ReturnType<typeof css>> = {
   primary: css`
-    background: #111827;
-    color: #ffffff;
-    border: 1px solid #111827;
+    background: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primaryText};
+    border: 1px solid ${({ theme }) => theme.colors.primary};
 
     &:hover:not(:disabled) {
-      background: #1f2937;
-      border-color: #1f2937;
+      background: ${({ theme }) => theme.colors.primaryHover};
+      border-color: ${({ theme }) => theme.colors.primaryHover};
     }
   `,
   secondary: css`
-    background: #ffffff;
-    color: #111827;
-    border: 1px solid #d1d5db;
+    background: ${({ theme }) => theme.colors.surface};
+    color: ${({ theme }) => theme.colors.text};
+    border: 1px solid ${({ theme }) => theme.colors.border};
 
     &:hover:not(:disabled) {
-      background: #f9fafb;
+      background: ${({ theme }) => theme.colors.surfaceMuted};
     }
   `,
   ghost: css`
     background: transparent;
-    color: #111827;
+    color: ${({ theme }) => theme.colors.text};
     border: 1px solid transparent;
 
     &:hover:not(:disabled) {
-      background: #f3f4f6;
+      background: ${({ theme }) => theme.colors.surfaceMuted};
     }
   `,
 }

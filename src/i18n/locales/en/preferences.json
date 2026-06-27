@@ -1,1 +1,26 @@
-{"settings":"Settings"}
+{
+    "settings": "Settings",
+    "languageSection": "Language",
+    "languageLabel": "Display language",
+    "language": {
+      "en": "English",
+      "te": "Telugu"
+    },
+    "regionSection": "Region",
+    "regionLabel": "Content region",
+    "region": {
+      "IN": "India",
+      "US": "United States"
+    },
+    "appearanceSection": "Appearance",
+    "themeLabel": "Theme",
+    "theme": {
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "accountSection": "Account",
+    "loggedInAs": "Logged in as {{username}}",
+    "logout": "Logout",
+    "selectLanguageAria": "Select language"
+  }

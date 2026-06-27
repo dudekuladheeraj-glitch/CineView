@@ -5,7 +5,7 @@ export const PosterWrapper = styled.div<{ $width?: string; $aspectRatio?: string
   aspect-ratio: ${({ $aspectRatio }) => $aspectRatio ?? '2 / 3'};
   border-radius: 12px;
   overflow: hidden;
-  background: #e5e7eb;
+  background: ${({ theme }) => theme.colors.surfaceMuted};
   flex-shrink: 0;
 `
 
@@ -22,7 +22,7 @@ export const PlaceholderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #9ca3af;
+  color: ${({ theme }) => theme.colors.textMuted};
   font-size: 0.8rem;
   text-align: center;
   padding: 8px;

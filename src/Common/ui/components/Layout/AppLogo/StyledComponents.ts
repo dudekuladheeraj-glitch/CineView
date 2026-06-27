@@ -17,8 +17,8 @@ export const LogoIcon = styled.span`
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: #111827;
-  color: #ffffff;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primaryText};
   font-size: 1rem;
   font-weight: 800;
   letter-spacing: -0.5px;
@@ -28,6 +28,6 @@ export const LogoIcon = styled.span`
 export const LogoText = styled.span`
   font-size: 1.2rem;
   font-weight: 700;
-  color: #111827;
+  color: ${({ theme }) => theme.colors.text};
   letter-spacing: -0.3px;
 `

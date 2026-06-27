@@ -1,8 +1,13 @@
+export { ThemeProvider } from './ui/theme/ThemeProvider'
+export { PreferencesSync } from './ui/theme/PreferencesSync'
+export { formatLocaleDate } from './core/utils/Data.utils'
+export type { AppThemeTokens } from './core/types/Theme.types'
 export { ProtectedRoute } from './ui/routes/ProtectedRoute'
 export { PublicRoute } from './ui/routes/PublicRoute'
 export { ProtectedLayout } from './ui/layouts/ProtectedLayout'
 export { NotFoundPage } from './ui/pages/NotFoundPage'
 export { PagePlaceholder } from './ui/components/PagePlaceholder'
+export { resolveStoreError } from './core/utils/StoreError.utils'
 
 export { AppButton } from './ui/components/AppButton'
 export type { AppButtonVariant } from './ui/components/AppButton'

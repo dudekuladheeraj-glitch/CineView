@@ -1,4 +1,5 @@
-// import { AppButton } from '../../../../Common'
+import { useTranslation } from 'react-i18next'
+
 import type { TvDetail } from '../../../../Common/core/types/Tmdb.types'
 import { getBackdropUrl } from '../../../../Common/core/utils/TmdbImage.utils'
 import { MediaPoster } from '../../../../Common/ui/components/MediaPoster'
@@ -23,6 +24,8 @@ interface Props {
 }
 
 export const TVShowDetailHeader = ({ tvShow }: Props) => {
+  const { t } = useTranslation(['tvShows', 'common'])
+  const overviewText = tvShow.overview?.trim() || t('tvShows:detail.noOverview')
   const backdropUrl = getBackdropUrl(tvShow.backdrop_path, 'w1280')
   const firstAirYear = tvShow.first_air_date ? tvShow.first_air_date.slice(0, 4) : null
 
@@ -39,16 +42,16 @@ export const TVShowDetailHeader = ({ tvShow }: Props) => {
             <MetaBadge>★ {tvShow.vote_average.toFixed(1)}</MetaBadge>
             {firstAirYear ? <MetaBadge>{firstAirYear}</MetaBadge> : null}
             {tvShow.number_of_seasons ? (
-              <MetaBadge>{tvShow.number_of_seasons} Seasons</MetaBadge>
+              <MetaBadge>{t('tvShows:seasonCount', { count: tvShow.number_of_seasons })}</MetaBadge>
             ) : null}
             {tvShow.genres?.map((genre) => (
               <MetaBadge key={genre.id}>{genre.name}</MetaBadge>
             ))}
           </MetaRow>
-          {tvShow.overview ? <Overview>{tvShow.overview}</Overview> : null}
+          <Overview>{overviewText}</Overview>
           <Actions>
-            <WatchlistButton type="button" disabled title="Watchlist coming soon">
-              + Watchlist
+            <WatchlistButton type="button" disabled title={t('common:watchlistComingSoon')}>
+              {t('tvShows:addToWatchlist')}
             </WatchlistButton>
           </Actions>
         </Info>
