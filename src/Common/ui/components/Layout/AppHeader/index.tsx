@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 
 import { ROUTES } from '../../../../core/constants/Routes.constants'
+import { useCollectionStore } from '../../../../../Collection/data/stores/providers'
 import { AppLogo } from '../AppLogo'
 import { AppSearch } from '../AppSearch'
 import { LanguageSwitcher } from '../LanguageSwitcher'
@@ -10,8 +11,10 @@ import {
   HeaderRoot,
   LeftSection,
   NavLinks,
+  NavLinkWrapper,
   RightSection,
   StyledNavLink,
+  WatchlistBadge,
 } from './StyledComponents'
 
 const NAV_ROUTES = [
@@ -24,6 +27,8 @@ const NAV_ROUTES = [
 
 const AppHeaderComponent = () => {
   const { t } = useTranslation('common')
+  const collectionStore = useCollectionStore()
+  const watchlistCount = collectionStore.watchlistCount
 
   return (
     <HeaderRoot>
@@ -32,9 +37,14 @@ const AppHeaderComponent = () => {
 
         <NavLinks>
           {NAV_ROUTES.map(({ to, key, end }) => (
-            <StyledNavLink key={to} to={to} end={end}>
-              {t(`nav.${key}`)}
-            </StyledNavLink>
+            <NavLinkWrapper key={to}>
+              <StyledNavLink to={to} end={end}>
+                {t(`nav.${key}`)}
+              </StyledNavLink>
+              {key === 'watchlist' && watchlistCount > 0 ? (
+                <WatchlistBadge>{watchlistCount > 99 ? '99+' : watchlistCount}</WatchlistBadge>
+              ) : null}
+            </NavLinkWrapper>
           ))}
         </NavLinks>
       </LeftSection>

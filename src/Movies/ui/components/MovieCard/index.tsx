@@ -1,8 +1,10 @@
+import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { MediaPoster } from '../../../../Common'
 import type { MovieSummary } from '../../../../Common/core/types/Tmdb.types'
+import { useCollectionStore } from '../../../../Collection/data/stores/providers'
 import {
   CardBody,
   CardLink,
@@ -16,9 +18,12 @@ interface Props {
   movie: MovieSummary
 }
 
-export const MovieCard = ({ movie }: Props) => {
+const MovieCardComponent = ({ movie }: Props) => {
   const { t } = useTranslation(['movies', 'common'])
   const navigate = useNavigate()
+  const collectionStore = useCollectionStore()
+
+  const inWatchlist = collectionStore.isInWatchlist(movie.id, 'movie')
 
   const handleOpen = () => {
     navigate(`/movies/${movie.id}`)
@@ -29,6 +34,16 @@ export const MovieCard = ({ movie }: Props) => {
       event.preventDefault()
       handleOpen()
     }
+  }
+
+  const handleToggleWatchlist = (event: React.MouseEvent) => {
+    event.stopPropagation()
+    collectionStore.toggleWatchlist({
+      mediaId: movie.id,
+      mediaType: 'movie',
+      cachedTitle: movie.title,
+      cachedPoster: movie.poster_path,
+    })
   }
 
   return (
@@ -46,15 +61,20 @@ export const MovieCard = ({ movie }: Props) => {
           <Rating>★ {movie.vote_average.toFixed(1)}</Rating>
           <WatchlistButton
             type="button"
-            aria-label={t('movies:card.addToWatchlist')}
-            title={t('common:watchlistComingSoon')}
-            onClick={(event) => event.stopPropagation()}
-            disabled
+            aria-label={
+              inWatchlist
+                ? t('common:watchlist.remove')
+                : t('common:watchlist.add')
+            }
+            $active={inWatchlist}
+            onClick={handleToggleWatchlist}
           >
-            +
+            {inWatchlist ? '✓' : '+'}
           </WatchlistButton>
         </MetaRow>
       </CardBody>
     </CardLink>
   )
 }
+
+export const MovieCard = observer(MovieCardComponent)

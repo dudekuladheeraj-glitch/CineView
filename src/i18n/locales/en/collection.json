@@ -1,14 +1,32 @@
 {
-    "watchlist": {
-      "title": "Watchlist Page",
-      "description": "Watchlist will be implemented in Milestone 5."
+  "watchlist": {
+    "title": "My Watchlist",
+    "tabs": {
+      "all": "All"
     },
-    "lists": {
-      "title": "My Lists Page",
-      "description": "Custom lists will be implemented in Milestone 6."
+    "status": {
+      "want_to_watch": "Want to Watch",
+      "watching": "Watching",
+      "completed": "Completed"
     },
-    "listDetail": {
-      "title": "List Detail Page",
-      "description": "List details will be implemented in Milestone 6."
+    "sortBy": "Sort by:",
+    "sort": {
+      "dateAdded": "Date Added",
+      "title": "Title"
+    },
+    "added": "Added",
+    "remove": "Remove",
+    "empty": {
+      "title": "Your watchlist is empty",
+      "description": "Add movies or TV shows from any page to start tracking what you want to watch."
     }
+  },
+  "lists": {
+    "title": "My Lists Page",
+    "description": "Custom lists will be implemented in Milestone 6."
+  },
+  "listDetail": {
+    "title": "List Detail Page",
+    "description": "List details will be implemented in Milestone 6."
   }
+}

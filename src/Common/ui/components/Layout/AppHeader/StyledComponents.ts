@@ -59,3 +59,26 @@ export const RightSection = styled.div`
   gap: 12px;
   flex-shrink: 0;
 `
+export const NavLinkWrapper = styled.span`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+`
+
+export const WatchlistBadge = styled.span`
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: ${({ theme }) => theme.colors.primary};
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  pointer-events: none;
+`

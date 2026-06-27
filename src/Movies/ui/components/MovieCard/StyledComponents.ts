@@ -38,16 +38,24 @@ export const Rating = styled.span`
   color: ${({ theme }) => theme.colors.rating};
 `
 
-export const WatchlistButton = styled.button`
-  border: 1px solid ${({ theme }) => theme.colors.border};
+export const WatchlistButton = styled.button<{ $active?: boolean }>`
+  border: 1px solid ${({ theme, $active }) => $active ? theme.colors.primary : theme.colors.border};
   border-radius: 999px;
   width: 32px;
   height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.surface};
-  color: ${({ theme }) => theme.colors.textMuted};
-  cursor: not-allowed;
-  opacity: 0.7;
+  background: ${({ theme, $active }) => $active ? theme.colors.primary : theme.colors.surface};
+  color: ${({ theme, $active }) => $active ? '#fff' : theme.colors.textMuted};
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+
+  &:hover {
+    background: ${({ theme, $active }) => $active ? theme.colors.primaryHover : theme.colors.surfaceMuted};
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme, $active }) => $active ? '#fff' : theme.colors.text};
+  }
 `

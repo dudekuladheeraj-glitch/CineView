@@ -42,5 +42,9 @@
       "loggedInAs": "Logged in as {{username}}",
       "logout": "Logout"
     },
-    "watchlistComingSoon": "Watchlist coming soon"
+    "watchlistComingSoon": "Watchlist coming soon",
+    "watchlist": {
+      "add": "+ Watchlist",
+      "remove": "✓ In Watchlist"
+    }
   }

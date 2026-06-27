@@ -42,5 +42,9 @@
       "loggedInAs": "{{username}} గా లాగిన్ అయ్యారు",
       "logout": "లాగ్ అవుట్"
     },
-    "watchlistComingSoon": "వాచ్‌లిస్ట్ త్వరలో"
+    "watchlistComingSoon": "వాచ్‌లిస్ట్ త్వరలో",
+    "watchlist": {
+      "add": "+ వాచ్‌లిస్ట్",
+      "remove": "✓ వాచ్‌లిస్ట్‌లో ఉంది"
+    }
   }

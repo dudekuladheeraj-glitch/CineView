@@ -1,9 +1,11 @@
+import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 
 import { AppButton } from '../../../../Common'
 import type { MovieDetail } from '../../../../Common/core/types/Tmdb.types'
 import { getBackdropUrl } from '../../../../Common/core/utils/TmdbImage.utils'
 import { MediaPoster } from '../../../../Common/ui/components/MediaPoster'
+import { useCollectionStore } from '../../../../Collection/data/stores/providers'
 import {
   Actions,
   BackdropFallback,
@@ -26,14 +28,26 @@ interface Props {
   onPlayTrailer?: () => void
 }
 
-export const MovieDetailHeader = ({ movie, trailerKey, onPlayTrailer }: Props) => {
+const MovieDetailHeaderComponent = ({ movie, trailerKey, onPlayTrailer }: Props) => {
   const { t } = useTranslation(['movies', 'common'])
+  const collectionStore = useCollectionStore()
+  const inWatchlist = collectionStore.isInWatchlist(movie.id, 'movie')
+
   const overviewText = movie.overview?.trim() || t('detail.noOverview')
   const backdropUrl = getBackdropUrl(movie.backdrop_path, 'w1280')
   const runtimeLabel = movie.runtime
     ? t('movies:detail.runtimeMinutes', { count: movie.runtime })
     : null
   const releaseYear = movie.release_date ? movie.release_date.slice(0, 4) : null
+
+  const handleToggleWatchlist = () => {
+    collectionStore.toggleWatchlist({
+      mediaId: movie.id,
+      mediaType: 'movie',
+      cachedTitle: movie.title,
+      cachedPoster: movie.poster_path,
+    })
+  }
 
   return (
     <HeaderRoot>
@@ -59,8 +73,14 @@ export const MovieDetailHeader = ({ movie, trailerKey, onPlayTrailer }: Props) =
                 {t('movies:hero.playTrailer')}
               </AppButton>
             ) : null}
-            <WatchlistButton type="button" disabled title={t('common:watchlistComingSoon')}>
-              {t('movies:detail.addToWatchlist')}
+            <WatchlistButton
+              type="button"
+              $active={inWatchlist}
+              onClick={handleToggleWatchlist}
+            >
+              {inWatchlist
+                ? t('common:watchlist.remove')
+                : t('common:watchlist.add')}
             </WatchlistButton>
           </Actions>
         </Info>
@@ -68,3 +88,5 @@ export const MovieDetailHeader = ({ movie, trailerKey, onPlayTrailer }: Props) =
     </HeaderRoot>
   )
 }
+
+export const MovieDetailHeader = observer(MovieDetailHeaderComponent)

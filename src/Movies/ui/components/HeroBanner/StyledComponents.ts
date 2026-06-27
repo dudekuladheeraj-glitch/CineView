@@ -88,3 +88,20 @@ export const Actions = styled.div`
   gap: 12px;
   flex-wrap: wrap;
 `
+export const WatchlistButton = styled.button<{ $active?: boolean }>`
+  border: 1px solid ${({ $active }) => $active ? 'rgba(255,255,255,0.8)' : 'rgba(255, 255, 255, 0.4)'};
+  border-radius: 8px;
+  padding: 10px 20px;
+  background: ${({ $active }) => $active ? 'rgba(255,255,255,0.25)' : 'rgba(255, 255, 255, 0.1)'};
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: ${({ $active }) => $active ? '600' : '400'};
+  backdrop-filter: blur(4px);
+  transition: background 0.15s, border-color 0.15s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+`

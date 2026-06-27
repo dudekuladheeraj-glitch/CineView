@@ -1,8 +1,10 @@
+import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 
 import { AppButton } from '../../../../Common'
 import type { MovieSummary } from '../../../../Common/core/types/Tmdb.types'
 import { getBackdropUrl } from '../../../../Common/core/utils/TmdbImage.utils'
+import { useCollectionStore } from '../../../../Collection/data/stores/providers'
 import {
   Actions,
   BackdropFallback,
@@ -14,6 +16,7 @@ import {
   Overview,
   RatingBadge,
   Title,
+  WatchlistButton,
 } from './StyledComponents'
 
 interface Props {
@@ -22,19 +25,27 @@ interface Props {
   onPlayTrailer?: () => void
 }
 
-export const HeroBanner = ({ movie, trailerKey, onPlayTrailer }: Props) => {
-  const { t } = useTranslation('movies')
+const HeroBannerComponent = ({ movie, trailerKey, onPlayTrailer }: Props) => {
+  const { t } = useTranslation(['movies', 'common'])
+  const collectionStore = useCollectionStore()
 
-  if (!movie) {
-    return null
+  if (!movie) return null
+
+  const inWatchlist = collectionStore.isInWatchlist(movie.id, 'movie')
+  const backdropUrl = getBackdropUrl(movie.backdrop_path, 'w1280')
+  const overviewText = movie.overview?.trim() || t('movies:detail.noOverview')
+
+  const handleToggleWatchlist = () => {
+    collectionStore.toggleWatchlist({
+      mediaId: movie.id,
+      mediaType: 'movie',
+      cachedTitle: movie.title,
+      cachedPoster: movie.poster_path,
+    })
   }
 
-  const backdropUrl = getBackdropUrl(movie.backdrop_path, 'w1280')
-  const overviewText = movie.overview?.trim() || t('detail.noOverview')
-
-
   return (
-    <BannerRoot aria-label={t('hero.featuredMovie', { title: movie.title })}>
+    <BannerRoot aria-label={t('movies:hero.featuredMovie', { title: movie.title })}>
       {backdropUrl ? <BackdropImage src={backdropUrl} alt="" /> : <BackdropFallback />}
       <Overlay />
       <Content>
@@ -46,11 +57,20 @@ export const HeroBanner = ({ movie, trailerKey, onPlayTrailer }: Props) => {
         <Actions>
           {trailerKey && onPlayTrailer ? (
             <AppButton type="button" onClick={onPlayTrailer}>
-              {t('hero.playTrailer')}
+              {t('movies:hero.playTrailer')}
             </AppButton>
           ) : null}
+          <WatchlistButton
+            type="button"
+            $active={inWatchlist}
+            onClick={handleToggleWatchlist}
+          >
+            {inWatchlist ? t('common:watchlist.remove') : t('common:watchlist.add')}
+          </WatchlistButton>
         </Actions>
       </Content>
     </BannerRoot>
   )
 }
+
+export const HeroBanner = observer(HeroBannerComponent)
